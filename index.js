@@ -3,7 +3,9 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 const userRouter = require("./router/user");
+const auth  = require("./router/auth");
 app.use("/api/users", userRouter);
+app.use("/api/auth", auth);
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
