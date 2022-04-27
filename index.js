@@ -2,12 +2,21 @@ const express = require('express')
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+const cors = require('cors');
 const userRouter = require("./router/user");
-const productRouter = require("./router/product");
 const auth = require("./router/auth");
+const productRouter = require("./router/product");
+const orderRouter = require("./router//order");
+const cartRouter = require("./router/cart");
+const paymentRouter = require("./router/stripe");
+app.use(cors());
 app.use("/api/users", userRouter);
-app.use("/api/products", productRouter);
 app.use("/api/auth", auth);
+app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
+app.use("/api/carts", cartRouter);
+app.use('/api/checkount', paymentRouter);
+
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
